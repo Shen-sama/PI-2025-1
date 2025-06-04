@@ -1,4 +1,4 @@
-package com.teatroingressos.pi20251;
+package com.teatroingressos.pi20251.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
