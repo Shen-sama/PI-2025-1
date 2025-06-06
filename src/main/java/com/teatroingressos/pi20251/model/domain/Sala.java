@@ -5,11 +5,11 @@ import java.util.List;
 public class Sala {
     private List<Area> areas;
 
-    public List<Area> getAreas() {
-        return areas;
+    public Sala(List<Area> areas) {
+        this.areas = areas;
     }
 
-    public void setAreas(List<Area> areas) {
-        this.areas = areas;
+    public List<Area> getAreas() {
+        return areas;
     }
 }

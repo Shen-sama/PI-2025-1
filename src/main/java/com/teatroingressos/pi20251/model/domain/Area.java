@@ -1,20 +1,22 @@
 package com.teatroingressos.pi20251.model.domain;
 
+import com.teatroingressos.pi20251.model.enums.TipoArea;
+
 import java.util.Map;
 
 public class Area {
-    private String nome;
+    private TipoArea tipo;
     private double preco;
     private Map<String, Poltrona> poltronas;
 
-    public Area(String nome, double preco, Map<String, Poltrona> poltronas) {
-        this.nome = nome;
+    public Area(TipoArea tipo, double preco, Map<String, Poltrona> poltronas) {
+        this.tipo = tipo;
         this.preco = preco;
         this.poltronas = poltronas;
     }
 
-    public String getNome() {
-        return nome;
+    public TipoArea getTipo() {
+        return tipo;
     }
 
     public double getPreco() {

@@ -9,7 +9,7 @@ public class DatabaseConnection {
     private Connection conexao;
 
     private DatabaseConnection() throws SQLException  {
-        String url = "jdbc:MySQL://localhost:3306/Atividade10";
+        String url = "jdbc:MySQL://localhost:3306/pi2025_1";
         String usuario = "root";
         String senha = "123456";
 
