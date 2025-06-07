@@ -17,7 +17,7 @@ public class SceneSwap {
 
     private static Parent loadFXML(String fxml) throws IOException
     {
-        FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource(fxml + ".fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("/com/teatroingressos/pi20251/view/" + fxml + ".fxml"));
         return fxmlLoader.load();
     }
 }
