@@ -1,8 +1,5 @@
 package com.teatroingressos.pi20251.app;
 
-import com.teatroingressos.pi20251.model.domain.Area;
-import com.teatroingressos.pi20251.model.domain.Sala;
-import com.teatroingressos.pi20251.model.domain.SalaDirector;
 import com.teatroingressos.pi20251.util.DatabaseConnection;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -13,13 +10,22 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-public class HelloApplication extends Application {
+public class MainApp extends Application {
+
+    private static Scene scene;
+
+    public static Scene getScene() {
+        return scene;
+    }
+
     @Override
     public void start(Stage stage) throws IOException, SQLException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/com/teatroingressos/pi20251/view/hello-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
-        stage.setTitle("Hello!");
+
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("/com/teatroingressos/pi20251/view/hello-view.fxml"));
+        scene = new Scene(fxmlLoader.load(), 600, 400);
         stage.setScene(scene);
+        stage.setMaximized(false);
+        stage.setResizable(false);
         stage.show();
 
         DatabaseConnection db = DatabaseConnection.getInstancia();
