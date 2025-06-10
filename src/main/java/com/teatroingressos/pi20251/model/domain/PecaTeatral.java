@@ -51,6 +51,10 @@ public class PecaTeatral {
         return sessoes;
     }
 
+    public void setSessoes(List<Sessao> sessoes) {
+        this.sessoes = sessoes;
+    }
+
     public void adicionarSessao(Sessao sessao) {
         this.sessoes.add(sessao);
     }

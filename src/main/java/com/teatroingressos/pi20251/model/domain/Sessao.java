@@ -11,10 +11,13 @@ public class Sessao {
     private Sala sala;
     private Map<String, Ingresso> ingressos;
 
+    private boolean disponivel;
+
     public Sessao() {
         SalaDirector salaDirector = new SalaDirector();
         this.sala = salaDirector.criarSalaCompleta();
         this.ingressos = new HashMap<>();
+        this.disponivel = true;
     }
 
     public long getId() {
@@ -49,7 +52,25 @@ public class Sessao {
         return ingressos;
     }
 
+    public boolean isDisponivel() {
+        return disponivel;
+    }
+
+    public void setDisponivel(boolean disponivel) {
+        this.disponivel = disponivel;
+    }
+
+    public void habilitar() {
+        this.disponivel = true;
+    }
+
+    public void desabilitar() {
+        this.disponivel = false;
+    }
+
     public void adicionarIngresso(Ingresso ingresso) {
         this.ingressos.put(ingresso.getCodPoltrona(), ingresso);
     }
+
+
 }

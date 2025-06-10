@@ -1,9 +1,8 @@
 package com.teatroingressos.pi20251.app;
 
-import com.teatroingressos.pi20251.model.domain.Cliente;
-import com.teatroingressos.pi20251.model.domain.Sala;
-import com.teatroingressos.pi20251.model.domain.SalaDirector;
+import com.teatroingressos.pi20251.model.domain.*;
 import com.teatroingressos.pi20251.model.repository.ClienteRepository;
+import com.teatroingressos.pi20251.model.repository.PecaTeatralRepository;
 import com.teatroingressos.pi20251.util.DatabaseConnection;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -20,6 +19,7 @@ public class MainApp extends Application {
     private static Scene scene;
 
     private static ClienteRepository clienteRepository;
+    private static PecaTeatralRepository pecasRepository;
 
     public static Scene getScene() {
         return scene;
@@ -27,6 +27,10 @@ public class MainApp extends Application {
 
     public static ClienteRepository getClienteRepository() {
         return clienteRepository;
+    }
+
+    public static PecaTeatralRepository getPecaTeatralRepository() {
+        return pecasRepository;
     }
 
     @Override
@@ -39,18 +43,15 @@ public class MainApp extends Application {
         stage.setResizable(false);
         stage.show();
 
-        inicializarSala();
         inicializarRepositorios();
-    }
-
-    private static void inicializarSala() {
-        SalaDirector salaDirector = new SalaDirector();
-        Sala sala = salaDirector.criarSalaCompleta();
     }
 
     private static void inicializarRepositorios() {
         clienteRepository = new ClienteRepository();
         clienteRepository.carregarClientesDoBanco();
+
+        pecasRepository = new PecaTeatralRepository();
+        pecasRepository.carregarPecasDoBanco();
     }
 
     public static void main(String[] args) {

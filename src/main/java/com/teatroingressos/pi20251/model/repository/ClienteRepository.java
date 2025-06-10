@@ -30,7 +30,7 @@ public class ClienteRepository {
         try {
             List<Cliente> lista = clienteDAO.buscarTodos();
             for (Cliente c : lista) {
-                clientesPorCpf.put(c.getCpf(), c);
+                cadastrar(c);
             }
         } catch (PersistenciaException e) {
             AlertUtils.mostrarErro("Erro ao carregar clientes", e.getMessage());

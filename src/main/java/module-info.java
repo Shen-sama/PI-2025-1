@@ -2,6 +2,7 @@ module com.teatroingressos.pi20251 {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.sql;
+    requires jdk.compiler;
 
 
     opens com.teatroingressos.pi20251.view to javafx.fxml;
