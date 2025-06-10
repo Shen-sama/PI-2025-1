@@ -18,7 +18,7 @@ public class DatabaseConnection {
     }
 
     public static DatabaseConnection getInstancia() throws SQLException  {
-        if (instancia == null) {
+        if (instancia == null || instancia.getConexao().isClosed()) {
             instancia = new DatabaseConnection();
         }
         return instancia;

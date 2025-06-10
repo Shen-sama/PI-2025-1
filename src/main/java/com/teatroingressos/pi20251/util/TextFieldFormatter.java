@@ -8,9 +8,10 @@ public class TextFieldFormatter {
 
     public static void ajustarBackspace(TextFormatter.Change change) {
         if (change.isDeleted() && change.getSelection().getLength() == 0) {
-            int pos = change.getRangeStart();
-            if (pos > 0 && !Character.isDigit(change.getControlText().charAt(pos - 1))) {
-                change.setRange(pos - 1, change.getRangeEnd());
+            if (!Character.isDigit(change.getControlText().charAt(change.getRangeStart()))) {
+                if (change.getRangeStart() > 0) {
+                    change.setRange(change.getRangeStart() - 1, change.getRangeEnd() - 1);
+                }
             }
         }
     }

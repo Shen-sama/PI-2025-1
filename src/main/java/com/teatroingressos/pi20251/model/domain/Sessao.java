@@ -12,6 +12,8 @@ public class Sessao {
     private Map<String, Ingresso> ingressos;
 
     public Sessao() {
+        SalaDirector salaDirector = new SalaDirector();
+        this.sala = salaDirector.criarSalaCompleta();
         this.ingressos = new HashMap<>();
     }
 
@@ -41,10 +43,6 @@ public class Sessao {
 
     public Sala getSala() {
         return sala;
-    }
-
-    public void setSala(Sala sala) {
-        this.sala = sala;
     }
 
     public Map<String, Ingresso> getIngressos() {

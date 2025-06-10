@@ -10,9 +10,10 @@ public class Ingresso {
 
     private String cpf;
     private String nomePeca;
-    private LocalDate dataPeca;
+    private LocalDate dataCompra;
     private String horaInicio;
     private String codPoltrona;
+    private double preco;
 
     public long getId() {
         return id;
@@ -54,12 +55,12 @@ public class Ingresso {
         this.nomePeca = nomePeca;
     }
 
-    public LocalDate getDataPeca() {
-        return dataPeca;
+    public LocalDate getDataCompra() {
+        return dataCompra;
     }
 
-    public void setDataPeca(LocalDate dataPeca) {
-        this.dataPeca = dataPeca;
+    public void setDataCompra(LocalDate dataCompra) {
+        this.dataCompra = dataCompra;
     }
 
     public String getHoraInicio() {
@@ -76,5 +77,13 @@ public class Ingresso {
 
     public void setCodPoltrona(String codPoltrona) {
         this.codPoltrona = codPoltrona;
+    }
+
+    public double getPreco() {
+        return preco;
+    }
+
+    public void setPreco(double preco) {
+        this.preco = preco;
     }
 }

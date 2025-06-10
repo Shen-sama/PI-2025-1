@@ -10,11 +10,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="850.0" prefWidth="847.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="850.0" prefWidth="847.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.teatroingressos.pi20251.controller.TelaInicialController">
    <children>
       <ImageView fitHeight="858.0" fitWidth="878.0" layoutX="-7.0" layoutY="-7.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../Imagens/download%20(4).jpg" />
+            <Image url="@../img/fundocinza.jpg" />
          </image>
       </ImageView>
       <Button layoutX="227.0" layoutY="455.0" mnemonicParsing="false" onAction="#iniciarAtendimento" prefHeight="87.0" prefWidth="421.0" text="Iniciar atendimento">
@@ -49,7 +49,7 @@
       <Line endX="417.0" layoutX="271.0" layoutY="623.0" startX="-100.0" />
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="139.0" layoutY="223.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../Downloads/images%20(1).png" />
+            <Image url="@../img/mascarasemfundo.png" />
          </image>
       </ImageView>
    </children>
