@@ -2,6 +2,7 @@ package com.teatroingressos.pi20251.app;
 
 import com.teatroingressos.pi20251.model.domain.*;
 import com.teatroingressos.pi20251.model.repository.ClienteRepository;
+import com.teatroingressos.pi20251.model.repository.IngressoRepository;
 import com.teatroingressos.pi20251.model.repository.PecaTeatralRepository;
 import com.teatroingressos.pi20251.util.DatabaseConnection;
 import javafx.application.Application;
@@ -20,6 +21,7 @@ public class MainApp extends Application {
 
     private static ClienteRepository clienteRepository;
     private static PecaTeatralRepository pecasRepository;
+    private static IngressoRepository ingressoRepository;
 
     public static Scene getScene() {
         return scene;
@@ -31,6 +33,10 @@ public class MainApp extends Application {
 
     public static PecaTeatralRepository getPecaTeatralRepository() {
         return pecasRepository;
+    }
+
+    public static IngressoRepository getIngressoRepository() {
+        return ingressoRepository;
     }
 
     @Override
@@ -52,6 +58,9 @@ public class MainApp extends Application {
 
         pecasRepository = new PecaTeatralRepository();
         pecasRepository.carregarPecasDoBanco();
+
+        ingressoRepository = new IngressoRepository();
+        ingressoRepository.carregarIngressosDoBanco();
     }
 
     public static void main(String[] args) {

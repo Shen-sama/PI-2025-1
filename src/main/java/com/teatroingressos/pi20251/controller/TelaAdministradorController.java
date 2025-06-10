@@ -6,6 +6,7 @@ import com.teatroingressos.pi20251.exception.BaseException;
 import com.teatroingressos.pi20251.exception.PecaException;
 import com.teatroingressos.pi20251.exception.SessaoException;
 import com.teatroingressos.pi20251.model.dao.SessaoDAO;
+import com.teatroingressos.pi20251.model.domain.Cliente;
 import com.teatroingressos.pi20251.model.domain.PecaTeatral;
 import com.teatroingressos.pi20251.model.domain.Sessao;
 import com.teatroingressos.pi20251.service.PecaTeatralService;
@@ -18,12 +19,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.LineChart;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
@@ -96,6 +92,21 @@ public class TelaAdministradorController implements Initializable {
 
     @FXML
     private TextField tfNomePeca;
+
+    @FXML
+    private TableColumn<String, Cliente> tcCodigoCliente;
+
+    @FXML
+    private TableColumn<String, Cliente> tcCpfCliente;
+
+    @FXML
+    private TableColumn<String, Cliente> tcNomeCliente;
+
+    @FXML
+    private TableColumn<String, Cliente> tcTelefoneCliente;
+
+    @FXML
+    private TableView<Cliente> tvListaClientes;
 
     private ObservableList<String> nomesPecas = FXCollections.observableArrayList();
 
@@ -185,6 +196,11 @@ public class TelaAdministradorController implements Initializable {
         }
 
         apagarCamposRemoverPeca();
+    }
+
+    @FXML
+    void mostrarListaCliente(ActionEvent event) {
+
     }
 
     @FXML

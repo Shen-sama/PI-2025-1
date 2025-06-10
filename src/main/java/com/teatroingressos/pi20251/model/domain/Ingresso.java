@@ -5,13 +5,14 @@ import java.time.LocalDate;
 public class Ingresso {
 
     private long id;
-    private long idPeca;
+    private long idSessao;
     private long idCliente;
 
     private String cpf;
     private String nomePeca;
     private LocalDate dataCompra;
     private String horaInicio;
+    private String areaPoltrona;
     private String codPoltrona;
     private double preco;
 
@@ -23,12 +24,12 @@ public class Ingresso {
         this.id = id;
     }
 
-    public long getIdPeca() {
-        return idPeca;
+    public long getIdSessao() {
+        return idSessao;
     }
 
-    public void setIdPeca(long idPeca) {
-        this.idPeca = idPeca;
+    public void setIdSessao(long idSessao) {
+        this.idSessao = idSessao;
     }
 
     public long getIdCliente() {
@@ -69,6 +70,14 @@ public class Ingresso {
 
     public void setHoraInicio(String horaInicio) {
         this.horaInicio = horaInicio;
+    }
+
+    public String getAreaPoltrona() {
+        return areaPoltrona;
+    }
+
+    public void setAreaPoltrona(String areaPoltrona) {
+        this.areaPoltrona = areaPoltrona;
     }
 
     public String getCodPoltrona() {
