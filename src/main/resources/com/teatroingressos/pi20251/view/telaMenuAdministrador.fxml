@@ -9,6 +9,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
@@ -26,7 +28,7 @@
          <children>
             <ImageView fitHeight="91.0" fitWidth="124.0" layoutX="26.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../img/mascara.png" />
+                  <Image url="@../img/mascarasemfundo.png" />
                </image>
             </ImageView>
             <Text layoutX="48.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Testro ABC" wrappingWidth="76.259765625" />
@@ -39,6 +41,7 @@
             <Button layoutX="26.0" layoutY="222.0" mnemonicParsing="false" onAction="#entrarAdicionarPeca" prefHeight="25.0" prefWidth="126.0" text="Adicionar Peça" />
             <Button layoutX="26.0" layoutY="289.0" mnemonicParsing="false" onAction="#entrarRemoverPeca" prefHeight="25.0" prefWidth="126.0" text="Remover Peça" />
             <Button layoutX="26.0" layoutY="362.0" mnemonicParsing="false" onAction="#entrarEstatistica" prefHeight="25.0" prefWidth="126.0" text="Ver Estatísticas" />
+            <Button layoutX="26.0" layoutY="431.0" mnemonicParsing="false" onAction="#mostrarListaCliente" prefHeight="25.0" prefWidth="126.0" text="Ver Lista de clientes" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="panelAdicionarPeca" layoutX="193.0" layoutY="128.0" prefHeight="551.0" prefWidth="538.0" style="-fx-background-color: e9e9e9;" visible="false">
@@ -112,7 +115,7 @@
                   <Font name="Arial Black" size="14.0" />
                </font>
             </Text>
-            <ComboBox fx:id="cbNomePecaRemover" layoutX="135.0" layoutY="74.0" onAction="#atualizarComboBoxHorarioPeca" prefHeight="25.0" prefWidth="352.0" />
+            <ComboBox fx:id="cbNomePecaRemover" layoutX="135.0" layoutY="74.0" prefHeight="25.0" prefWidth="352.0" />
             <Text layoutX="69.0" layoutY="148.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Horário">
                <font>
                   <Font name="Arial Black" size="14.0" />
@@ -175,6 +178,23 @@
                   <Font name="Arial Black" size="18.0" />
                </font>
             </Text>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="panelListaCleinte" layoutX="196.0" layoutY="126.0" prefHeight="551.0" prefWidth="538.0" visible="false">
+         <children>
+            <Text layoutX="31.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lista de clientes">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Text>
+            <TableView fx:id="tvListaClientes" layoutX="14.0" layoutY="61.0" prefHeight="472.0" prefWidth="513.0">
+              <columns>
+                <TableColumn fx:id="tcCodigoCliente" prefWidth="45.33331298828125" text="Codigo" />
+                <TableColumn fx:id="tcNomeCliente" prefWidth="185.33331298828125" text="Nome" />
+                  <TableColumn fx:id="tcCpfCliente" prefWidth="140.66671752929688" text="CPF" />
+                  <TableColumn fx:id="tcTelefoneCliente" prefWidth="142.00006103515625" text="Telefone" />
+              </columns>
+            </TableView>
          </children>
       </AnchorPane>
    </children>

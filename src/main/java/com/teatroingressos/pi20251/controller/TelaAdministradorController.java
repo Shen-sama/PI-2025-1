@@ -79,6 +79,9 @@ public class TelaAdministradorController implements Initializable {
     private AnchorPane panelRemoverPeca;
 
     @FXML
+    private AnchorPane panelListaCleinte;
+
+    @FXML
     private RadioButton radioFaturamentoPeca;
 
     @FXML
