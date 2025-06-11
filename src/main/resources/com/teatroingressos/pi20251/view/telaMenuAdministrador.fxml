@@ -57,19 +57,19 @@
                   <Font name="Arial Black" size="14.0" />
                </font>
             </Text>
-            <TextArea fx:id="taSinopse" layoutX="142.0" layoutY="123.0" prefHeight="120.0" prefWidth="337.0" />
+            <TextArea fx:id="taSinopse" layoutX="142.0" layoutY="123.0" prefHeight="120.0" prefWidth="337.0" wrapText="true" />
             <Text layoutX="59.0" layoutY="282.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Duração" wrappingWidth="76.259765625">
                <font>
                   <Font name="Arial Black" size="14.0" />
                </font>
             </Text>
-            <ComboBox fx:id="cbDuracaoHora" layoutX="138.0" layoutY="264.0" prefHeight="25.0" prefWidth="54.0" />
-            <Text layoutX="202.0" layoutY="282.0" strokeType="OUTSIDE" strokeWidth="0.0" text=":" wrappingWidth="26.259765625">
+            <ComboBox fx:id="cbDuracaoHora" layoutX="138.0" layoutY="264.0" prefHeight="25.0" prefWidth="85.0" />
+            <Text layoutX="235.0" layoutY="282.0" strokeType="OUTSIDE" strokeWidth="0.0" text=":" wrappingWidth="26.259765625">
                <font>
                   <Font name="Arial Black" size="14.0" />
                </font>
             </Text>
-            <ComboBox fx:id="cbDuracaoMin" layoutX="215.0" layoutY="264.0" prefHeight="25.0" prefWidth="54.0" />
+            <ComboBox fx:id="cbDuracaoMin" layoutX="249.0" layoutY="264.0" prefHeight="25.0" prefWidth="85.0" />
             <Separator layoutX="12.0" layoutY="345.0" prefHeight="3.0" prefWidth="513.0" />
             <Button fx:id="btnCadastrarPeca" layoutX="136.0" layoutY="305.0" mnemonicParsing="false" onAction="#cadastrarPeca" text="Cadastrar Peça" />
             <Text layoutX="59.0" layoutY="424.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome " wrappingWidth="62.57293701171875">
@@ -83,13 +83,13 @@
                   <Font name="Arial Black" size="14.0" />
                </font>
             </Text>
-            <ComboBox fx:id="cbHoraSessao" layoutX="129.0" layoutY="456.0" prefHeight="25.0" prefWidth="54.0" />
-            <Text layoutX="193.0" layoutY="474.0" strokeType="OUTSIDE" strokeWidth="0.0" text=":" wrappingWidth="26.259765625">
+            <ComboBox fx:id="cbHoraSessao" layoutX="129.0" layoutY="456.0" prefHeight="25.0" prefWidth="85.0" />
+            <Text layoutX="227.0" layoutY="473.0" strokeType="OUTSIDE" strokeWidth="0.0" text=":" wrappingWidth="26.259765625">
                <font>
                   <Font name="Arial Black" size="14.0" />
                </font>
             </Text>
-            <ComboBox fx:id="cbMinSessao" layoutX="206.0" layoutY="456.0" prefHeight="25.0" prefWidth="54.0" />
+            <ComboBox fx:id="cbMinSessao" layoutX="244.0" layoutY="455.0" prefHeight="25.0" prefWidth="85.0" />
             <Button fx:id="btnCadastrarSessao" layoutX="130.0" layoutY="511.0" mnemonicParsing="false" onAction="#cadastrarSessao" text="Cadastrar Sessão" />
             <Text layoutX="59.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ADICIONAR PEÇA">
                <font>
