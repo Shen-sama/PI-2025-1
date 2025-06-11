@@ -31,7 +31,7 @@ public class AreaBuilder {
     }
 
     public Area build() {
-        return new Area(tipo, preco, PoltronaUtils.gerarPoltronas(fileiras, poltronasPorFileira));
+        return new Area(tipo, preco, fileiras, poltronasPorFileira);
     }
 
 }

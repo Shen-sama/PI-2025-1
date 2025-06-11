@@ -58,4 +58,12 @@ public class PecaTeatral {
     public void adicionarSessao(Sessao sessao) {
         this.sessoes.add(sessao);
     }
+
+    public boolean verificarDisponibilidade() {
+        for (Sessao sessao : this.sessoes) {
+            if (sessao.isDisponivel()) return true;
+        }
+
+        return false;
+    }
 }

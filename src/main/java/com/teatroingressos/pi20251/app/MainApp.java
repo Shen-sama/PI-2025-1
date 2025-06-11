@@ -1,19 +1,15 @@
 package com.teatroingressos.pi20251.app;
 
-import com.teatroingressos.pi20251.model.domain.*;
 import com.teatroingressos.pi20251.model.repository.ClienteRepository;
 import com.teatroingressos.pi20251.model.repository.IngressoRepository;
 import com.teatroingressos.pi20251.model.repository.PecaTeatralRepository;
-import com.teatroingressos.pi20251.util.DatabaseConnection;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.Map;
 
 public class MainApp extends Application {
 
@@ -21,7 +17,6 @@ public class MainApp extends Application {
 
     private static ClienteRepository clienteRepository;
     private static PecaTeatralRepository pecasRepository;
-    private static IngressoRepository ingressoRepository;
 
     public static Scene getScene() {
         return scene;
@@ -33,10 +28,6 @@ public class MainApp extends Application {
 
     public static PecaTeatralRepository getPecaTeatralRepository() {
         return pecasRepository;
-    }
-
-    public static IngressoRepository getIngressoRepository() {
-        return ingressoRepository;
     }
 
     @Override
@@ -57,10 +48,7 @@ public class MainApp extends Application {
         clienteRepository.carregarClientesDoBanco();
 
         pecasRepository = new PecaTeatralRepository();
-        pecasRepository.carregarPecasDoBanco();
-
-        //ingressoRepository = new IngressoRepository();
-        //ingressoRepository.carregarIngressosDoBanco();
+        pecasRepository.carregarPecasComIngressos();
     }
 
     public static void main(String[] args) {

@@ -1,6 +1,7 @@
 package com.teatroingressos.pi20251.model.domain;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Sessao {
@@ -72,5 +73,18 @@ public class Sessao {
         this.ingressos.put(ingresso.getCodPoltrona(), ingresso);
     }
 
+    public void ocuparPoltronaAreaIngresso(Ingresso ingresso) {
+        String areaIngresso = ingresso.getAreaPoltrona();
+        String codPoltrona = ingresso.getCodPoltrona();
 
+        for (Area area : this.sala.getAreas()) {
+            if (areaIngresso.equalsIgnoreCase(area.getTipo().toString())) {
+                Map<String, Poltrona> poltronasArea = area.getPoltronas();
+
+                Poltrona poltrona = poltronasArea.get(codPoltrona);
+                poltrona.ocupar();
+                break;
+            }
+        }
+    }
 }

@@ -1,22 +1,35 @@
 package com.teatroingressos.pi20251.model.domain;
 
 import com.teatroingressos.pi20251.model.enums.TipoArea;
+import com.teatroingressos.pi20251.util.PoltronaUtils;
 
 import java.util.Map;
 
 public class Area {
     private TipoArea tipo;
+    private int fileiras;
+    private int poltronasPorFileira;
     private double preco;
     private Map<String, Poltrona> poltronas;
 
-    public Area(TipoArea tipo, double preco, Map<String, Poltrona> poltronas) {
+    public Area(TipoArea tipo, double preco, int fileiras, int poltronasPorFileira) {
         this.tipo = tipo;
         this.preco = preco;
-        this.poltronas = poltronas;
+        this.fileiras = fileiras;
+        this.poltronasPorFileira = poltronasPorFileira;
+        this.poltronas = PoltronaUtils.gerarPoltronas(fileiras, poltronasPorFileira);
     }
 
     public TipoArea getTipo() {
         return tipo;
+    }
+
+    public int getFileiras() {
+        return fileiras;
+    }
+
+    public int getPoltronasPorFileira() {
+        return poltronasPorFileira;
     }
 
     public double getPreco() {
@@ -30,4 +43,6 @@ public class Area {
     public Poltrona getPoltrona(String codigo) {
         return poltronas.get(codigo);
     }
+
+
 }

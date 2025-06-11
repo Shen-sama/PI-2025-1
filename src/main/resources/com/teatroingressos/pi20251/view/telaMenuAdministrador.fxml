@@ -115,7 +115,7 @@
                   <Font name="Arial Black" size="14.0" />
                </font>
             </Text>
-            <ComboBox fx:id="cbNomePecaRemover" layoutX="135.0" layoutY="74.0" prefHeight="25.0" prefWidth="352.0" />
+            <ComboBox fx:id="cbNomePecaRemover" layoutX="135.0" layoutY="74.0" onAction="#atualizarComboBoxHorarioPeca" prefHeight="25.0" prefWidth="352.0" />
             <Text layoutX="69.0" layoutY="148.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Horário">
                <font>
                   <Font name="Arial Black" size="14.0" />

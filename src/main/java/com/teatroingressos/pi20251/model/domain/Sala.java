@@ -12,4 +12,14 @@ public class Sala {
     public List<Area> getAreas() {
         return areas;
     }
+
+    public Area getAreaPorNome(String nomeArea) {
+        for (Area area : this.areas) {
+            if (nomeArea.equalsIgnoreCase(area.getTipo().toString())) {
+                return area;
+            }
+        }
+
+        return null;
+    }
 }

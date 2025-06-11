@@ -4,6 +4,7 @@ import com.teatroingressos.pi20251.exception.PersistenciaException;
 import com.teatroingressos.pi20251.model.dao.IngressoDAO;
 import com.teatroingressos.pi20251.model.domain.Cliente;
 import com.teatroingressos.pi20251.model.domain.Ingresso;
+import com.teatroingressos.pi20251.model.domain.PecaTeatral;
 import com.teatroingressos.pi20251.util.AlertUtils;
 
 import java.util.HashMap;

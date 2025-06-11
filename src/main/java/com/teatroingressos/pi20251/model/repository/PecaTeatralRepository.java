@@ -1,8 +1,11 @@
 package com.teatroingressos.pi20251.model.repository;
 
 import com.teatroingressos.pi20251.exception.PersistenciaException;
+import com.teatroingressos.pi20251.model.dao.IngressoDAO;
 import com.teatroingressos.pi20251.model.dao.PecaTeatralDAO;
+import com.teatroingressos.pi20251.model.domain.Ingresso;
 import com.teatroingressos.pi20251.model.domain.PecaTeatral;
+import com.teatroingressos.pi20251.model.domain.Sessao;
 import com.teatroingressos.pi20251.util.AlertUtils;
 
 import java.util.HashMap;
@@ -24,18 +27,40 @@ public class PecaTeatralRepository {
         pecasPorNome.put(peca.getNome(), peca);
     }
 
-    public void carregarPecasDoBanco() {
+    public void carregarPecasComIngressos() {
         PecaTeatralDAO pecaTeatralDAO = new PecaTeatralDAO();
+        IngressoDAO ingressoDAO = new IngressoDAO();
 
         try {
-            List<PecaTeatral> lista = pecaTeatralDAO.buscarTodas();
-            for (PecaTeatral p : lista) {
+            List<PecaTeatral> listaPecas = pecaTeatralDAO.buscarTodas();
+            for (PecaTeatral p : listaPecas) {
                 if (!pecasPorNome.containsKey(p.getNome())) {
                     cadastrar(p);
                 }
             }
+
+            List<Ingresso> ingressos = ingressoDAO.buscarTodosIngressos();
+
+            associarIngressosASessoes(ingressos, listaPecas);
+
         } catch (PersistenciaException e) {
-            AlertUtils.mostrarErro("Erro ao carregar peças", e.getMessage());
+            AlertUtils.mostrarErro("Erro ao carregar peças/ingressos", e.getMessage());
+        }
+    }
+
+    private void associarIngressosASessoes(List<Ingresso> ingressos, List<PecaTeatral> pecas) {
+        for (Ingresso ingresso : ingressos) {
+            for (PecaTeatral peca : pecas) {
+                if (!peca.getNome().equalsIgnoreCase(ingresso.getNomePeca())) continue;
+
+                for (Sessao sessao : peca.getSessoes()) {
+                    if (sessao.getId() == ingresso.getIdSessao()) {
+                        sessao.adicionarIngresso(ingresso);
+                        sessao.ocuparPoltronaAreaIngresso(ingresso);
+                        break;
+                    }
+                }
+            }
         }
     }
 }
