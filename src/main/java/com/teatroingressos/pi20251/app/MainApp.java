@@ -59,8 +59,8 @@ public class MainApp extends Application {
         pecasRepository = new PecaTeatralRepository();
         pecasRepository.carregarPecasDoBanco();
 
-        ingressoRepository = new IngressoRepository();
-        ingressoRepository.carregarIngressosDoBanco();
+        //ingressoRepository = new IngressoRepository();
+        //ingressoRepository.carregarIngressosDoBanco();
     }
 
     public static void main(String[] args) {

@@ -20,10 +20,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.LineChart;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -97,16 +99,16 @@ public class TelaAdministradorController implements Initializable {
     private TextField tfNomePeca;
 
     @FXML
-    private TableColumn<String, Cliente> tcCodigoCliente;
+    private TableColumn<Cliente, Long> tcCodigoCliente;
 
     @FXML
-    private TableColumn<String, Cliente> tcCpfCliente;
+    private TableColumn<Cliente, String> tcCpfCliente;
 
     @FXML
-    private TableColumn<String, Cliente> tcNomeCliente;
+    private TableColumn<Cliente, String> tcNomeCliente;
 
     @FXML
-    private TableColumn<String, Cliente> tcTelefoneCliente;
+    private TableColumn<Cliente, String> tcTelefoneCliente;
 
     @FXML
     private TableView<Cliente> tvListaClientes;
@@ -171,6 +173,7 @@ public class TelaAdministradorController implements Initializable {
         panelAdicionarPeca.setVisible(true);
         panelRemoverPeca.setVisible(false);
         panelEstatistica.setVisible(false);
+        panelListaCleinte.setVisible(false);
     }
 
     @FXML
@@ -178,6 +181,7 @@ public class TelaAdministradorController implements Initializable {
         panelAdicionarPeca.setVisible(false);
         panelRemoverPeca.setVisible(false);
         panelEstatistica.setVisible(true);
+        panelListaCleinte.setVisible(false);
     }
 
     @FXML
@@ -185,6 +189,15 @@ public class TelaAdministradorController implements Initializable {
         panelAdicionarPeca.setVisible(false);
         panelRemoverPeca.setVisible(true);
         panelEstatistica.setVisible(false);
+        panelListaCleinte.setVisible(false);
+    }
+
+    @FXML
+    void mostrarListaCliente(ActionEvent event) {
+        panelAdicionarPeca.setVisible(false);
+        panelRemoverPeca.setVisible(false);
+        panelEstatistica.setVisible(false);
+        panelListaCleinte.setVisible(true);
     }
 
     @FXML
@@ -199,11 +212,6 @@ public class TelaAdministradorController implements Initializable {
         }
 
         apagarCamposRemoverPeca();
-    }
-
-    @FXML
-    void mostrarListaCliente(ActionEvent event) {
-
     }
 
     @FXML
@@ -237,6 +245,20 @@ public class TelaAdministradorController implements Initializable {
         inicializarCamposAdicionarPeca();
         inicializarCamposAdicionarSessao();
         inicializarCamposRemoverPeca();
+        inicializarListaClientes();
+    }
+
+    private void inicializarListaClientes() {
+        ObservableList<Cliente> listaClientes = FXCollections.observableArrayList();
+
+        listaClientes.setAll(MainApp.getClienteRepository().getClientesPorCpf().values());
+
+        tcCodigoCliente.setCellValueFactory(new PropertyValueFactory<>("id"));
+        tcNomeCliente.setCellValueFactory(new PropertyValueFactory<>("nome"));
+        tcCpfCliente.setCellValueFactory(new PropertyValueFactory<>("cpf"));
+        tcTelefoneCliente.setCellValueFactory(new PropertyValueFactory<>("telefone"));
+
+        tvListaClientes.setItems(listaClientes);
     }
 
     private void inicializarCamposAdicionarPeca() {

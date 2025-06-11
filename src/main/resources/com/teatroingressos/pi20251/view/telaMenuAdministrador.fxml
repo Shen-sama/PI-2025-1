@@ -189,10 +189,10 @@
             </Text>
             <TableView fx:id="tvListaClientes" layoutX="14.0" layoutY="61.0" prefHeight="472.0" prefWidth="513.0">
               <columns>
-                <TableColumn fx:id="tcCodigoCliente" prefWidth="45.33331298828125" text="Codigo" />
-                <TableColumn fx:id="tcNomeCliente" prefWidth="185.33331298828125" text="Nome" />
-                  <TableColumn fx:id="tcCpfCliente" prefWidth="140.66671752929688" text="CPF" />
-                  <TableColumn fx:id="tcTelefoneCliente" prefWidth="142.00006103515625" text="Telefone" />
+                <TableColumn fx:id="tcCodigoCliente" editable="false" prefWidth="45.33331298828125" sortable="false" text="Codigo" />
+                <TableColumn fx:id="tcNomeCliente" editable="false" prefWidth="185.33331298828125" sortable="false" text="Nome" />
+                  <TableColumn fx:id="tcCpfCliente" editable="false" prefWidth="140.66671752929688" sortable="false" text="CPF" />
+                  <TableColumn fx:id="tcTelefoneCliente" editable="false" prefWidth="142.00006103515625" sortable="false" text="Telefone" />
               </columns>
             </TableView>
          </children>
