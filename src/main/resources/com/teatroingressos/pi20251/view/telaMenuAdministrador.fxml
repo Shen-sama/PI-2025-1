@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.chart.BarChart?>
 <?import javafx.scene.chart.CategoryAxis?>
-<?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Button?>
@@ -144,17 +144,9 @@
             </Text>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="panelEstatistica" layoutX="193.0" layoutY="121.0" prefHeight="562.0" prefWidth="549.0" visible="false">
+      <AnchorPane fx:id="panelEstatistica" layoutX="193.0" layoutY="108.0" prefHeight="575.0" prefWidth="549.0" visible="false">
          <children>
-            <LineChart fx:id="graficoEstatistica" layoutX="25.0" layoutY="98.0">
-              <xAxis>
-                <CategoryAxis side="BOTTOM" />
-              </xAxis>
-              <yAxis>
-                <NumberAxis side="LEFT" />
-              </yAxis>
-            </LineChart>
-            <RadioButton fx:id="radioFaturamentoPeca" layoutX="121.0" layoutY="69.0" mnemonicParsing="false" text="Faturamento por peça">
+            <RadioButton fx:id="radioIngressosPeca" layoutX="61.0" layoutY="59.0" mnemonicParsing="false" text="Ingressos/Peça Vendidos">
                <toggleGroup>
                   <ToggleGroup fx:id="estatistica" />
                </toggleGroup>
@@ -162,22 +154,35 @@
                   <Font size="14.0" />
                </font>
             </RadioButton>
-            <RadioButton fx:id="radioFaturamentoSessao" layoutX="344.0" layoutY="69.0" mnemonicParsing="false" text="Faturamento por sessão" toggleGroup="$estatistica">
+            <RadioButton fx:id="radioOcupacaoPoltronas" layoutX="286.0" layoutY="59.0" mnemonicParsing="false" text="Ocupação de Poltronas/Sessão" toggleGroup="$estatistica">
                <font>
                   <Font size="14.0" />
                </font>
             </RadioButton>
-            <Label layoutX="77.0" layoutY="512.0" text="Faturamento Médio   R$">
+            <Label layoutX="77.0" layoutY="534.0" text="Faturamento Médio   R$">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <TextField fx:id="tfFaturamentoMedio" layoutX="279.0" layoutY="513.0" prefHeight="25.0" prefWidth="170.0" />
-            <Text layoutX="77.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ESTATÍSTICAS">
+            <TextField fx:id="tfFaturamentoMedio" editable="false" layoutX="279.0" layoutY="535.0" prefHeight="25.0" prefWidth="170.0" />
+            <Text layoutX="196.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ESTATÍSTICAS">
                <font>
                   <Font name="Arial Black" size="18.0" />
                </font>
             </Text>
+            <BarChart fx:id="chartEstatisticas" layoutX="29.0" layoutY="126.0">
+              <xAxis>
+                <CategoryAxis side="BOTTOM" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis side="LEFT" />
+              </yAxis>
+            </BarChart>
+            <RadioButton fx:id="radioFaturamento" layoutX="165.0" layoutY="95.0" mnemonicParsing="false" text="Faturamento por Peça/Sessão" toggleGroup="$estatistica">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </RadioButton>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="panelListaCleinte" layoutX="196.0" layoutY="126.0" prefHeight="551.0" prefWidth="538.0" visible="false">

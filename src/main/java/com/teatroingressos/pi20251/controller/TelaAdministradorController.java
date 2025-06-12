@@ -6,19 +6,21 @@ import com.teatroingressos.pi20251.exception.BaseException;
 import com.teatroingressos.pi20251.exception.PecaException;
 import com.teatroingressos.pi20251.exception.SessaoException;
 import com.teatroingressos.pi20251.model.dao.SessaoDAO;
-import com.teatroingressos.pi20251.model.domain.Cliente;
-import com.teatroingressos.pi20251.model.domain.PecaTeatral;
-import com.teatroingressos.pi20251.model.domain.Sessao;
+import com.teatroingressos.pi20251.model.domain.*;
 import com.teatroingressos.pi20251.service.PecaTeatralService;
 import com.teatroingressos.pi20251.util.AlertUtils;
 import com.teatroingressos.pi20251.util.SceneSwap;
+import javafx.application.Platform;
 import javafx.beans.binding.BooleanBinding;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
@@ -66,10 +68,10 @@ public class TelaAdministradorController implements Initializable {
     private ComboBox<String> cbNomePecaRemover;
 
     @FXML
-    private ToggleGroup estatistica;
+    private BarChart<String, Number> chartEstatisticas;
 
     @FXML
-    private LineChart<String, Number> graficoEstatistica;
+    private ToggleGroup estatistica;
 
     @FXML
     private AnchorPane panelAdicionarPeca;
@@ -84,10 +86,13 @@ public class TelaAdministradorController implements Initializable {
     private AnchorPane panelListaCleinte;
 
     @FXML
-    private RadioButton radioFaturamentoPeca;
+    private RadioButton radioFaturamento;
 
     @FXML
-    private RadioButton radioFaturamentoSessao;
+    private RadioButton radioIngressosPeca;
+
+    @FXML
+    private RadioButton radioOcupacaoPoltronas;
 
     @FXML
     private TextArea taSinopse;
@@ -246,6 +251,7 @@ public class TelaAdministradorController implements Initializable {
         inicializarCamposAdicionarSessao();
         inicializarCamposRemoverPeca();
         inicializarListaClientes();
+        inicializarRadioEstatistica();
     }
 
     private void inicializarListaClientes() {
@@ -271,6 +277,24 @@ public class TelaAdministradorController implements Initializable {
         for (int i = 0; i < 60; i++) {
             cbDuracaoMin.getItems().add(String.format("%02d", i));
         }
+    }
+
+    private void inicializarRadioEstatistica() {
+        estatistica.selectedToggleProperty().addListener((obs, oldToggle, newToggle) -> {
+            if (newToggle == radioIngressosPeca) {
+                mostrarIngressosPorPeca();
+            } else if (newToggle == radioOcupacaoPoltronas) {
+                mostrarOcupacaoPorSessao();
+            } else if (newToggle == radioFaturamento) {
+                mostrarFaturamento();
+            }
+        });
+
+        CategoryAxis xAxis = (CategoryAxis) chartEstatisticas.getXAxis();
+        xAxis.setTickLabelsVisible(false);
+        xAxis.setTickMarkVisible(false);
+
+        mostrarFaturamentoMedio();
     }
 
     private void apagarCamposAdicionarPeca() {
@@ -367,5 +391,115 @@ public class TelaAdministradorController implements Initializable {
         nomesPecas.setAll(
                 pecas.values().stream().map(PecaTeatral::getNome).toList()
         );
+    }
+
+    private void mostrarIngressosPorPeca() {
+        chartEstatisticas.getData().clear();
+        XYChart.Series<String, Number> series = new XYChart.Series<>();
+        series.setName("Ingressos por Peça");
+
+        for (PecaTeatral peca : MainApp.getPecaTeatralRepository().getPecasPorNome().values()) {
+            int total = 0;
+            for (Sessao sessao : peca.getSessoes()) {
+                total += sessao.getIngressos().size();
+            }
+
+            XYChart.Data<String, Number> data = new XYChart.Data<>(peca.getNome(), total);
+            series.getData().add(data);
+        }
+
+        chartEstatisticas.getData().add(series);
+
+        for (XYChart.Data<String, Number> data : series.getData()) {
+            Platform.runLater(() -> {
+                Tooltip tooltip = new Tooltip(data.getXValue() + ": " + data.getYValue() + " ingresso(s)");
+                Tooltip.install(data.getNode(), tooltip);
+            });
+        }
+    }
+
+    private void mostrarOcupacaoPorSessao() {
+        chartEstatisticas.getData().clear();
+        XYChart.Series<String, Number> series = new XYChart.Series<>();
+        series.setName("Ocupação por Sessão");
+
+        for (PecaTeatral peca : MainApp.getPecaTeatralRepository().getPecasPorNome().values()) {
+            for (Sessao sessao : peca.getSessoes()) {
+                int ocupadas = 0;
+                int total = 0;
+                for (Area area : sessao.getSala().getAreas()) {
+                    for (Poltrona p : area.getPoltronas().values()) {
+                        if (!p.isDisponivel()) ocupadas++;
+                        total++;
+                    }
+                }
+                String nomeSessao = peca.getNome() + " - " + sessao.getHorario();
+                double ocupacao = (total == 0) ? 0 : (ocupadas * 100.0) / total;
+
+                XYChart.Data<String, Number> data = new XYChart.Data<>(nomeSessao, ocupacao);
+                series.getData().add(data);
+            }
+        }
+
+        chartEstatisticas.getData().add(series);
+
+        for (XYChart.Data<String, Number> data : series.getData()) {
+            Platform.runLater(() -> {
+                String texto = String.format("%s\n%.1f%% ocupação", data.getXValue(), data.getYValue().doubleValue());
+                Tooltip tooltip = new Tooltip(texto);
+                Tooltip.install(data.getNode(), tooltip);
+            });
+        }
+    }
+
+    private void mostrarFaturamento() {
+        chartEstatisticas.getData().clear();
+        XYChart.Series<String, Number> series = new XYChart.Series<>();
+        series.setName("Faturamento");
+
+        for (PecaTeatral peca : MainApp.getPecaTeatralRepository().getPecasPorNome().values()) {
+            double total = 0.0;
+            for (Sessao sessao : peca.getSessoes()) {
+                for (Ingresso ingresso : sessao.getIngressos().values()) {
+                    total += ingresso.getPreco();
+                }
+            }
+
+            XYChart.Data<String, Number> data = new XYChart.Data<>(peca.getNome(), total);
+            series.getData().add(data);
+        }
+
+        chartEstatisticas.getData().add(series);
+
+        for (XYChart.Data<String, Number> data : series.getData()) {
+            Platform.runLater(() -> {
+                String texto = String.format("%s\nR$ %.2f", data.getXValue(), data.getYValue().doubleValue());
+                Tooltip tooltip = new Tooltip(texto);
+                Tooltip.install(data.getNode(), tooltip);
+            });
+        }
+    }
+
+    private void mostrarFaturamentoMedio() {
+
+        int totalSessoes = 0;
+        double faturamentoTotal = 0;
+
+        for (PecaTeatral peca : MainApp.getPecaTeatralRepository().getPecasPorNome().values()) {
+            for (Sessao sessao : peca.getSessoes()) {
+                totalSessoes++;
+                for (Ingresso ingresso : sessao.getIngressos().values()) {
+                    faturamentoTotal += ingresso.getPreco();
+                }
+            }
+        }
+
+        if (totalSessoes == 0) {
+            tfFaturamentoMedio.setText("0,00");
+            return;
+        }
+
+        double media = faturamentoTotal / totalSessoes;
+        tfFaturamentoMedio.setText(String.format("%.2f", media));
     }
 }
