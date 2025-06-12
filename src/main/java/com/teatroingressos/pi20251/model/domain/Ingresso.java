@@ -64,10 +64,6 @@ public class Ingresso {
         this.dataCompra = dataCompra;
     }
 
-    public String getHoraInicio() {
-        return horaInicio;
-    }
-
     public void setHoraInicio(String horaInicio) {
         this.horaInicio = horaInicio;
     }
@@ -94,5 +90,9 @@ public class Ingresso {
 
     public void setPreco(double preco) {
         this.preco = preco;
+    }
+
+    public String getHoraInicio() {
+        return horaInicio;
     }
 }

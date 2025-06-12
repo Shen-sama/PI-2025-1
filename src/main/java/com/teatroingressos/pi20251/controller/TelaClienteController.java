@@ -1,6 +1,5 @@
 package com.teatroingressos.pi20251.controller;
 
-import com.sun.tools.javac.Main;
 import com.teatroingressos.pi20251.app.MainApp;
 import com.teatroingressos.pi20251.exception.BaseException;
 import com.teatroingressos.pi20251.exception.PersistenciaException;
@@ -17,7 +16,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.*;
@@ -133,7 +131,7 @@ public class TelaClienteController implements Initializable {
     private final IntegerProperty quantidadePoltronasSelecionadas = new SimpleIntegerProperty(0);
 
     @FXML
-    void buscarIngresso(ActionEvent event) {
+    void buscarIngresso() {
         if (!ValidadorCPF.isCpfValido(tfCpfPesquisa.getText())) {
             AlertUtils.mostrarErro("Erro na Pesquisa", "CPF inválido.");
             return;
@@ -154,7 +152,7 @@ public class TelaClienteController implements Initializable {
     }
 
     @FXML
-    void cadastrarCliente(ActionEvent event) {
+    void cadastrarCliente() {
         if (!ValidadorCPF.isCpfValido(tfCPFCadastro.getText())) {
             AlertUtils.mostrarErro("Erro no Cadastro", "CPF inválido.");
             return;
@@ -203,7 +201,7 @@ public class TelaClienteController implements Initializable {
     }
 
     @FXML
-    void finalizarCompra(ActionEvent event) {
+    void finalizarCompra() {
         if (!ValidadorCPF.isCpfValido(tfCPFCompra.getText())) {
             AlertUtils.mostrarErro("Erro na Compra de Ingresso", "CPF inválido.");
             return;
@@ -262,7 +260,7 @@ public class TelaClienteController implements Initializable {
     }
 
     @FXML
-    void cadastroFidelidade(ActionEvent event) {
+    void cadastroFidelidade() {
         apagarCamposCadastro();
         penalCadastro.setVisible(true);
         panelVerIngressos.setVisible(false);
@@ -271,7 +269,7 @@ public class TelaClienteController implements Initializable {
     }
 
     @FXML
-    void comprarIngresso(ActionEvent event) {
+    void comprarIngresso() {
         penalCadastro.setVisible(false);
         panelVerIngressos.setVisible(false);
         penelComprarIngresso.setVisible(true);
@@ -279,20 +277,24 @@ public class TelaClienteController implements Initializable {
     }
 
     @FXML
-    void verIngresso(ActionEvent event) {
+    void verIngresso() {
         penalCadastro.setVisible(false);
         panelVerIngressos.setVisible(true);
         penelComprarIngresso.setVisible(false);
     }
 
     @FXML
-    void voltarMenuInicial(ActionEvent event) throws IOException {
+    void voltarMenuInicial() throws IOException {
         SceneSwap.setRoot(MainApp.getScene(), "telaInicial");
     }
 
     @FXML
-    void atualizarComboBoxSessao(ActionEvent event) {
+    void atualizarComboBoxSessao() {
         String nomeSelecionado = cbNomePeca.getValue();
+
+        if (nomeSelecionado == null) {
+            return;
+        }
 
         PecaTeatral peca = MainApp.getPecaTeatralRepository().getPecasPorNome().get(nomeSelecionado);
         if (peca != null) {
@@ -313,10 +315,14 @@ public class TelaClienteController implements Initializable {
     }
 
     @FXML
-    void atualizarComboBoxArea(ActionEvent event) {
+    void atualizarComboBoxArea() {
         cbArea.getItems().clear();
         String nomeSelecionado = cbNomePeca.getValue();
         String horarioSelecionada = cbSessao.getValue();
+
+        if (horarioSelecionada == null) {
+            return;
+        }
 
         PecaTeatral peca = MainApp.getPecaTeatralRepository().getPecasPorNome().get(nomeSelecionado);
         List<Sessao> sessoes = peca.getSessoes();
@@ -366,9 +372,9 @@ public class TelaClienteController implements Initializable {
         tfCPFCompra.clear();
         tfPreco.setText("0,00");
 
-        cbArea.getSelectionModel().clearSelection();
-        cbSessao.getSelectionModel().clearSelection();
-        cbNomePeca.getSelectionModel().clearSelection();
+        cbArea.setValue(null);
+        cbSessao.setValue(null);
+        cbNomePeca.setValue(null);
 
         spQtIngresso.getValueFactory().setValue(1);
 
@@ -470,17 +476,16 @@ public class TelaClienteController implements Initializable {
         BooleanBinding bb = new BooleanBinding()
         {
             {
-                super.bind(tfNome.textProperty(), tfCPFCadastro.textProperty(), tfTelefone.textProperty(), dfDataNascimento.valueProperty(), tfRua.textProperty(),
-                        tfComplemento.textProperty(), tfNumero.textProperty(), tfBairro.textProperty(), tfCidade.textProperty(), tfCEP.textProperty(),
+                super.bind(tfNome.textProperty(), tfCPFCadastro.textProperty(), tfRua.textProperty(),
+                        tfBairro.textProperty(), tfCidade.textProperty(), tfCEP.textProperty(),
                         cbEstado.valueProperty());
             }
 
             @Override
             protected boolean computeValue()
             {
-                return (tfNome.getText().isEmpty() || tfCPFCadastro.getText().length() < 14 || tfTelefone.getText().length() < 15 ||
-                        dfDataNascimento.getValue() == null || tfRua.getText().isEmpty() || tfComplemento.getText().isEmpty() ||
-                        tfNumero.getText().isEmpty() || tfBairro.getText().isEmpty() || tfCidade.getText().isEmpty() || tfCEP.getText().length() < 9 ||
+                return (tfNome.getText().isEmpty() || tfCPFCadastro.getText().length() < 14 || tfRua.getText().isEmpty() ||
+                        tfBairro.getText().isEmpty() || tfCidade.getText().isEmpty() || tfCEP.getText().length() < 9 ||
                         cbEstado.getValue() == null);
             }
         };

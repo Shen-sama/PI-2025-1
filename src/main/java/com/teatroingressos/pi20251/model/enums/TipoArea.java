@@ -13,10 +13,6 @@ public enum TipoArea {
         this.nomeCorreto = nomeCorreto;
     }
 
-    public String getNomeCorreto() {
-        return nomeCorreto;
-    }
-
     @Override
     public String toString() {
         return nomeCorreto;

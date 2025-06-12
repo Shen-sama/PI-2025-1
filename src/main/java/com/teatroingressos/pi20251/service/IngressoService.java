@@ -18,7 +18,7 @@ public class IngressoService {
         return ingressoDAO.buscarPorCpf(cpf);
     }
 
-    public void comprarIngresso(Ingresso ingresso, Sessao sessao) throws PersistenciaException {
+    public void comprarIngresso(Ingresso ingresso, Sessao sessao) throws PersistenciaException, IngressoException {
         int id = ingressoDAO.salvar(ingresso);
         if (id <= 0) {
             throw new PersistenciaException("Erro ao salvar ingresso no banco.");

@@ -10,12 +10,12 @@ import java.io.IOException;
 public class TelaInicialController {
 
     @FXML
-    void iniciarAdministrador(ActionEvent event) throws IOException {
+    void iniciarAdministrador() throws IOException {
         SceneSwap.setRoot(MainApp.getScene(), "telaMenuAdministrador");
     }
 
     @FXML
-    void iniciarAtendimento(ActionEvent event) throws IOException {
+    void iniciarAtendimento() throws IOException {
         SceneSwap.setRoot(MainApp.getScene(), "telaCompra");
     }
 }

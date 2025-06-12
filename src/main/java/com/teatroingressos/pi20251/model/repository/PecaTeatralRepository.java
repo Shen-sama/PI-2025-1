@@ -1,5 +1,6 @@
 package com.teatroingressos.pi20251.model.repository;
 
+import com.teatroingressos.pi20251.app.MainApp;
 import com.teatroingressos.pi20251.exception.PersistenciaException;
 import com.teatroingressos.pi20251.model.dao.IngressoDAO;
 import com.teatroingressos.pi20251.model.dao.PecaTeatralDAO;
@@ -45,6 +46,17 @@ public class PecaTeatralRepository {
 
         } catch (PersistenciaException e) {
             AlertUtils.mostrarErro("Erro ao carregar peças/ingressos", e.getMessage());
+        }
+    }
+
+    public void atualizarDisponibilidadeSessaoRepositorio(String nomePeca, String horario, boolean disponivel) {
+        PecaTeatral pecaTeatral = this.pecasPorNome.get(nomePeca);
+
+        for (Sessao sessao : pecaTeatral.getSessoes()) {
+            if (sessao.getHorario().equalsIgnoreCase(horario)) {
+                sessao.setDisponivel(disponivel);
+                break;
+            }
         }
     }
 

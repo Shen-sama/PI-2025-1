@@ -154,7 +154,7 @@
             </Text>
             <Spinner fx:id="spQtIngresso" layoutX="417.0" layoutY="161.0" prefHeight="25.0" prefWidth="89.0" />
             <Separator layoutX="14.0" layoutY="220.0" prefHeight="4.0" prefWidth="525.0" />
-            <GridPane fx:id="gpPoltrona" layoutX="36.0" layoutY="284.0" prefHeight="317.0" prefWidth="487.0">
+            <GridPane fx:id="gpPoltrona" layoutX="36.0" layoutY="281.0" prefHeight="317.0" prefWidth="487.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -165,19 +165,19 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
             </GridPane>
-            <Button fx:id="btnComprarIngresso" layoutX="377.0" layoutY="639.0" mnemonicParsing="false" onAction="#finalizarCompra" prefHeight="25.0" prefWidth="136.0" style="-fx-background-color: lime green;" text="Comprar">
+            <Button fx:id="btnComprarIngresso" layoutX="377.0" layoutY="643.0" mnemonicParsing="false" onAction="#finalizarCompra" prefHeight="25.0" prefWidth="136.0" style="-fx-background-color: lime green;" text="Comprar">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
             </Button>
             <Text layoutX="83.0" layoutY="244.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Selecione a area desejada" />
             <ComboBox fx:id="cbArea" layoutX="239.0" layoutY="226.0" prefHeight="25.0" prefWidth="158.0" />
-            <Text layoutX="85.0" layoutY="656.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Valor:  R$">
+            <Text layoutX="85.0" layoutY="660.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Valor:  R$">
                <font>
                   <Font size="14.0" />
                </font>
             </Text>
-            <TextField fx:id="tfPreco" editable="false" layoutX="150.0" layoutY="639.0" />
+            <TextField fx:id="tfPreco" editable="false" layoutX="150.0" layoutY="643.0" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="panelVerIngressos" layoutX="235.0" layoutY="32.0" prefHeight="607.0" prefWidth="548.0" visible="false">

@@ -44,7 +44,7 @@
             <Button layoutX="26.0" layoutY="431.0" mnemonicParsing="false" onAction="#mostrarListaCliente" prefHeight="25.0" prefWidth="126.0" text="Ver Lista de clientes" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="panelAdicionarPeca" layoutX="193.0" layoutY="128.0" prefHeight="551.0" prefWidth="538.0" style="-fx-background-color: e9e9e9;" visible="false">
+      <AnchorPane fx:id="panelAdicionarPeca" layoutX="193.0" layoutY="128.0" prefHeight="551.0" prefWidth="538.0" visible="false">
          <children>
             <Text layoutX="59.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome " wrappingWidth="62.57293701171875">
                <font>
@@ -146,7 +146,7 @@
       </AnchorPane>
       <AnchorPane fx:id="panelEstatistica" layoutX="193.0" layoutY="108.0" prefHeight="575.0" prefWidth="549.0" visible="false">
          <children>
-            <RadioButton fx:id="radioIngressosPeca" layoutX="61.0" layoutY="59.0" mnemonicParsing="false" text="Ingressos/Peça Vendidos">
+            <RadioButton fx:id="radioIngressosPeca" layoutX="285.0" layoutY="17.0" mnemonicParsing="false" text="Ingressos/Peça Vendidos">
                <toggleGroup>
                   <ToggleGroup fx:id="estatistica" />
                </toggleGroup>
@@ -154,7 +154,7 @@
                   <Font size="14.0" />
                </font>
             </RadioButton>
-            <RadioButton fx:id="radioOcupacaoPoltronas" layoutX="286.0" layoutY="59.0" mnemonicParsing="false" text="Ocupação de Poltronas/Sessão" toggleGroup="$estatistica">
+            <RadioButton fx:id="radioOcupacaoPoltronas" layoutX="286.0" layoutY="52.0" mnemonicParsing="false" text="Ocupação de Poltronas/Sessão" toggleGroup="$estatistica">
                <font>
                   <Font size="14.0" />
                </font>
@@ -165,7 +165,7 @@
                </font>
             </Label>
             <TextField fx:id="tfFaturamentoMedio" editable="false" layoutX="279.0" layoutY="535.0" prefHeight="25.0" prefWidth="170.0" />
-            <Text layoutX="196.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ESTATÍSTICAS">
+            <Text layoutX="45.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ESTATÍSTICAS">
                <font>
                   <Font name="Arial Black" size="18.0" />
                </font>
@@ -178,11 +178,16 @@
                 <NumberAxis side="LEFT" />
               </yAxis>
             </BarChart>
-            <RadioButton fx:id="radioFaturamento" layoutX="165.0" layoutY="95.0" mnemonicParsing="false" text="Faturamento por Peça/Sessão" toggleGroup="$estatistica">
+            <RadioButton fx:id="radioFaturamento" layoutX="287.0" layoutY="87.0" mnemonicParsing="false" text="Faturamento por Peça/Sessão" toggleGroup="$estatistica">
                <font>
                   <Font size="14.0" />
                </font>
             </RadioButton>
+            <Text layoutX="45.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Passe o mouse sobre a coluna para ver as informações" wrappingWidth="147.005859375">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Text>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="panelListaCleinte" layoutX="196.0" layoutY="126.0" prefHeight="551.0" prefWidth="538.0" visible="false">

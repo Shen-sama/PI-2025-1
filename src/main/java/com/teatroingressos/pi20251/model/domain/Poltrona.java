@@ -20,8 +20,4 @@ public class Poltrona {
     public void ocupar() {
         this.disponivel = false;
     }
-
-    public void liberar() {
-        this.disponivel = true;
-    }
 }

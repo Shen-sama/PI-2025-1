@@ -1,7 +1,6 @@
 package com.teatroingressos.pi20251.model.domain;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class Sessao {
@@ -27,10 +26,6 @@ public class Sessao {
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public long getIdPeca() {
-        return idPeca;
     }
 
     public void setIdPeca(long idPeca) {
@@ -59,14 +54,6 @@ public class Sessao {
 
     public void setDisponivel(boolean disponivel) {
         this.disponivel = disponivel;
-    }
-
-    public void habilitar() {
-        this.disponivel = true;
-    }
-
-    public void desabilitar() {
-        this.disponivel = false;
     }
 
     public void adicionarIngresso(Ingresso ingresso) {

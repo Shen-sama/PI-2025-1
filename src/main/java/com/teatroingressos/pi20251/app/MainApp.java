@@ -1,7 +1,6 @@
 package com.teatroingressos.pi20251.app;
 
 import com.teatroingressos.pi20251.model.repository.ClienteRepository;
-import com.teatroingressos.pi20251.model.repository.IngressoRepository;
 import com.teatroingressos.pi20251.model.repository.PecaTeatralRepository;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -31,7 +30,7 @@ public class MainApp extends Application {
     }
 
     @Override
-    public void start(Stage stage) throws IOException, SQLException {
+    public void start(Stage stage) throws IOException {
 
         FXMLLoader fxmlLoader = new FXMLLoader(MainApp.class.getResource("/com/teatroingressos/pi20251/view/telaInicial.fxml"));
         scene = new Scene(fxmlLoader.load());

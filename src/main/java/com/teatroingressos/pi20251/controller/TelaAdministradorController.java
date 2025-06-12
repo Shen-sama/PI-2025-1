@@ -1,6 +1,5 @@
 package com.teatroingressos.pi20251.controller;
 
-import com.sun.tools.javac.Main;
 import com.teatroingressos.pi20251.app.MainApp;
 import com.teatroingressos.pi20251.exception.BaseException;
 import com.teatroingressos.pi20251.exception.PecaException;
@@ -19,7 +18,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
-import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -27,7 +25,6 @@ import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -121,7 +118,7 @@ public class TelaAdministradorController implements Initializable {
     private ObservableList<String> nomesPecas = FXCollections.observableArrayList();
 
     @FXML
-    void cadastrarPeca(ActionEvent event) throws PecaException {
+    void cadastrarPeca() throws PecaException {
         PecaTeatral pecaTeatral = new PecaTeatral();
         pecaTeatral.setNome(tfNomePeca.getText());
         pecaTeatral.setSinopse(taSinopse.getText());
@@ -142,7 +139,7 @@ public class TelaAdministradorController implements Initializable {
     }
 
     @FXML
-    void cadastrarSessao(ActionEvent event) throws SessaoException {
+    void cadastrarSessao() throws SessaoException {
         PecaTeatral pecaEscolhida = MainApp.getPecaTeatralRepository().getPecasPorNome().get(cbNomePeca.getValue());
 
         Sessao sessao = new Sessao();
@@ -160,11 +157,12 @@ public class TelaAdministradorController implements Initializable {
     }
 
     @FXML
-    void desabilitarSessao(ActionEvent event) {
+    void desabilitarSessao() {
         SessaoDAO sessaoDAO = new SessaoDAO();
 
         try {
             sessaoDAO.atualizarDisponibilidade(cbNomePecaRemover.getValue(), cbHorarioPeca.getValue(), false);
+            MainApp.getPecaTeatralRepository().atualizarDisponibilidadeSessaoRepositorio(cbNomePecaRemover.getValue(), cbHorarioPeca.getValue(), false);
             AlertUtils.mostrarInfo("Sucesso", "Sessão desabilitada com sucesso.");
         } catch (SessaoException e) {
             AlertUtils.mostrarErro("Erro ao atualizar sessão", e.getMessage());
@@ -174,7 +172,7 @@ public class TelaAdministradorController implements Initializable {
     }
 
     @FXML
-    void entrarAdicionarPeca(ActionEvent event) {
+    void entrarAdicionarPeca() {
         panelAdicionarPeca.setVisible(true);
         panelRemoverPeca.setVisible(false);
         panelEstatistica.setVisible(false);
@@ -182,7 +180,7 @@ public class TelaAdministradorController implements Initializable {
     }
 
     @FXML
-    void entrarEstatistica(ActionEvent event) {
+    void entrarEstatistica() {
         panelAdicionarPeca.setVisible(false);
         panelRemoverPeca.setVisible(false);
         panelEstatistica.setVisible(true);
@@ -190,7 +188,7 @@ public class TelaAdministradorController implements Initializable {
     }
 
     @FXML
-    void entrarRemoverPeca(ActionEvent event) {
+    void entrarRemoverPeca() {
         panelAdicionarPeca.setVisible(false);
         panelRemoverPeca.setVisible(true);
         panelEstatistica.setVisible(false);
@@ -198,7 +196,7 @@ public class TelaAdministradorController implements Initializable {
     }
 
     @FXML
-    void mostrarListaCliente(ActionEvent event) {
+    void mostrarListaCliente() {
         panelAdicionarPeca.setVisible(false);
         panelRemoverPeca.setVisible(false);
         panelEstatistica.setVisible(false);
@@ -206,11 +204,12 @@ public class TelaAdministradorController implements Initializable {
     }
 
     @FXML
-    void habilitarSessao(ActionEvent event) {
+    void habilitarSessao() {
         SessaoDAO sessaoDAO = new SessaoDAO();
 
         try {
             sessaoDAO.atualizarDisponibilidade(cbNomePecaRemover.getValue(), cbHorarioPeca.getValue(), true);
+            MainApp.getPecaTeatralRepository().atualizarDisponibilidadeSessaoRepositorio(cbNomePecaRemover.getValue(), cbHorarioPeca.getValue(), true);
             AlertUtils.mostrarInfo("Sucesso", "Sessão habilitada com sucesso.");
         } catch (SessaoException e) {
             AlertUtils.mostrarErro("Erro ao atualizar sessão", e.getMessage());
@@ -220,12 +219,12 @@ public class TelaAdministradorController implements Initializable {
     }
 
     @FXML
-    void voltarMenuInicial(ActionEvent event) throws IOException {
+    void voltarMenuInicial() throws IOException {
         SceneSwap.setRoot(MainApp.getScene(), "telaInicial");
     }
 
     @FXML
-    void atualizarComboBoxHorarioPeca(ActionEvent event) {
+    void atualizarComboBoxHorarioPeca() {
         String nomeSelecionado = cbNomePecaRemover.getValue();
 
         PecaTeatral peca = MainApp.getPecaTeatralRepository().getPecasPorNome().get(nomeSelecionado);

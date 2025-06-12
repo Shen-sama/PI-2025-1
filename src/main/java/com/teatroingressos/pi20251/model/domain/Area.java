@@ -24,10 +24,6 @@ public class Area {
         return tipo;
     }
 
-    public int getFileiras() {
-        return fileiras;
-    }
-
     public int getPoltronasPorFileira() {
         return poltronasPorFileira;
     }
@@ -38,10 +34,6 @@ public class Area {
 
     public Map<String, Poltrona> getPoltronas() {
         return poltronas;
-    }
-
-    public Poltrona getPoltrona(String codigo) {
-        return poltronas.get(codigo);
     }
 
 

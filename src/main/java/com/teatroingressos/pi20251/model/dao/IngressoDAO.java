@@ -12,7 +12,7 @@ import java.util.List;
 
 public class IngressoDAO {
 
-    public int salvar(Ingresso ingresso) throws PersistenciaException {
+    public int salvar(Ingresso ingresso) throws PersistenciaException, IngressoException {
         String sql = """
         INSERT INTO ingresso (dataCompra, poltrona, areaPoltrona, cpfComprador, IDCliente, IDSessao, preco)
         VALUES (?, ?, ?, ?, ?, ?, ?)
@@ -50,7 +50,7 @@ public class IngressoDAO {
             }
 
         } catch (SQLException e) {
-            throw new PersistenciaException("Erro ao salvar ingresso no banco de dados.", e);
+            throw new IngressoException("Erro ao salvar ingresso:"  + e.getMessage());
         }
 
     }

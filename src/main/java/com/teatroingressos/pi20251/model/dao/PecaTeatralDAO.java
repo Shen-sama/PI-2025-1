@@ -1,6 +1,5 @@
 package com.teatroingressos.pi20251.model.dao;
 
-import com.teatroingressos.pi20251.exception.EnderecoException;
 import com.teatroingressos.pi20251.exception.PecaException;
 import com.teatroingressos.pi20251.exception.PersistenciaException;
 import com.teatroingressos.pi20251.model.domain.PecaTeatral;

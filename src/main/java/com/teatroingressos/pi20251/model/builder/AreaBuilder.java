@@ -2,7 +2,6 @@ package com.teatroingressos.pi20251.model.builder;
 
 import com.teatroingressos.pi20251.model.domain.Area;
 import com.teatroingressos.pi20251.model.enums.TipoArea;
-import com.teatroingressos.pi20251.util.PoltronaUtils;
 
 public class AreaBuilder {
     private TipoArea tipo;
