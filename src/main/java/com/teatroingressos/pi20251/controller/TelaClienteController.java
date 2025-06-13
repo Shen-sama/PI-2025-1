@@ -392,7 +392,7 @@ public class TelaClienteController implements Initializable {
 
     private void inicializarCamposCadastro() {
         TextFieldLimiter.limitarPorRegex(tfNome, TextFieldLimiter.getNamePattern());
-        TextFieldLimiter.limitarNumeros(tfNumero, 3);
+        TextFieldLimiter.limitarNumeros(tfNumero, 10);
         TextFieldLimiter.limitarPorRegex(tfCidade, TextFieldLimiter.getCityPattern());
         TextFieldLimiter.limitarNumerosFormatado(tfCPFCadastro, "CPF", 11);
         TextFieldHighlight.aplicarHighlightComLimite(tfCPFCadastro, 14);
